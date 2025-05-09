@@ -5,14 +5,14 @@
       "name": "[Staging] Flutter",
       "request": "launch",
       "type": "dart",
-      "program": "lib/main.dart",
+      "program": "lib/main/main.dart",
       "args": []
     },
     {
       "name": "[Development] Flutter",
       "request": "launch",
       "type": "dart",
-      "program": "lib/main.dart",
+      "program": "lib/main/main.dart",
       "args": []
     }
   ]
