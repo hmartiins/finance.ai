@@ -72,4 +72,78 @@ void main() {
     final scrollable = find.byType(Scrollable);
     expect(scrollable, findsOneWidget);
   });
+
+  testWidgets('should render AppBar with title when appBarTitle is provided',
+      (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: PageContainer(
+          appBarTitle: 'Test Title',
+          children: [Text('Content')],
+        ),
+      ),
+    );
+
+    expect(find.byType(AppBar), findsOneWidget);
+    expect(find.text('Test Title'), findsOneWidget);
+  });
+
+  testWidgets('should not render AppBar when appBarTitle is null',
+      (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: PageContainer(
+          children: [Text('Content')],
+        ),
+      ),
+    );
+
+    expect(find.byType(AppBar), findsNothing);
+  });
+
+  testWidgets('PageContainer shows back button when canPop is true',
+      (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Builder(
+          builder: (context) {
+            return ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const PageContainer(
+                      appBarTitle: 'Second Page',
+                      children: [],
+                    ),
+                  ),
+                );
+              },
+              child: const Text('Go'),
+            );
+          },
+        ),
+      ),
+    );
+
+    await tester.tap(find.text('Go'));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(AppBar), findsOneWidget);
+    expect(find.byIcon(Icons.arrow_back), findsOneWidget);
+  });
+
+  testWidgets('should not show back button when canPop is false',
+      (tester) async {
+    await tester.pumpWidget(
+      MaterialApp(
+        home: const PageContainer(
+          appBarTitle: 'Root Page',
+          children: [],
+        ),
+      ),
+    );
+
+    expect(find.byType(AppBar), findsOneWidget);
+    expect(find.byIcon(Icons.arrow_back), findsNothing);
+  });
 }
