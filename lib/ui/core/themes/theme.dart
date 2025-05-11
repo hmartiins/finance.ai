@@ -3,6 +3,23 @@
 import 'package:flutter/material.dart';
 
 abstract final class AppTheme {
+  static InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: BorderSide(color: Colors.grey.shade300),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: BorderSide(color: Colors.deepPurpleAccent),
+    ),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12),
+      borderSide: BorderSide(color: Colors.grey.shade300),
+    ),
+    prefixIconColor: Colors.grey.shade400,
+    labelStyle: TextStyle(color: Colors.grey.shade400),
+  );
+
   static FilledButtonThemeData filledButtonTheme = const FilledButtonThemeData(
     style: ButtonStyle(
       backgroundColor: WidgetStatePropertyAll(Colors.deepPurpleAccent),
@@ -52,6 +69,7 @@ abstract final class AppTheme {
     brightness: Brightness.light,
     dividerTheme: const DividerThemeData(space: 0),
     appBarTheme: const AppBarTheme(elevation: 0, centerTitle: true),
+    inputDecorationTheme: inputDecorationTheme,
     filledButtonTheme: filledButtonTheme,
     outlinedButtonTheme: outlinedButtonTheme,
     fontFamily: 'Inter',
