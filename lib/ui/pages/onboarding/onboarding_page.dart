@@ -1,6 +1,8 @@
+import 'package:finance_ai/main/routing/routes.dart';
 import 'package:finance_ai/ui/core/themes/assets.dart';
 import 'package:finance_ai/ui/widgets/page_container.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
@@ -35,7 +37,12 @@ class OnboardingPage extends StatelessWidget {
         Expanded(child: Container()),
         FilledButton(onPressed: () {}, child: Text('Sign Up')),
         const SizedBox(height: 16),
-        OutlinedButton(onPressed: () {}, child: Text('Login')),
+        OutlinedButton(
+          onPressed: () {
+            context.push(Routes.login);
+          },
+          child: Text('Login'),
+        ),
         const SizedBox(height: 24),
       ],
     );
