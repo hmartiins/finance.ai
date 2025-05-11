@@ -20,5 +20,9 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Create .env from secrets
+        run: |
+          echo "TEST=123" > .env
+
       - name: Analyze project source
         run: flutter analyze
